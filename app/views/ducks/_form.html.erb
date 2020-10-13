@@ -1,0 +1,30 @@
+<%= form_for @duck do |f| %>
+<% if @duck.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+            <%= pluralize(@duck.errors.count, "error") %>
+            prohibited this duck from being saved:
+            </h2>
+
+            <ul>
+            <% @duck.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <%= f.fields_for :student_attributes do |s| %>
+        <%= s.label :name, "Student name" %>
+        <%= s.text_field :name %>
+        <%= s.label :mod, "Student mod" %>
+        <%= s.select(:mod, (1..5), prompt: true) %>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>
+
+

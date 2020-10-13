@@ -1,0 +1,16 @@
+<ul>
+    <li>Name: <%= @student.name %></li>
+    <li>Mod: <%= @student.mod %></li>
+    <li>Ducks: 
+        <ul>
+            <% if !@student.ducks.empty? %>
+                <% @student.ducks.each do |duck| %>
+                    <li> <%= link_to duck.name, duck_path(duck) %> </li>
+                <% end %>
+            <% else %>
+            <li> No ducks :( </li>
+            <% end %>
+        </ul>
+    </li>
+
+<ul>

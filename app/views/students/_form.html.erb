@@ -1,0 +1,32 @@
+<%= form_for @student do |f| %>
+<% if @student.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+            <%= pluralize(@student.errors.count, "error") %>
+            prohibited this student from being saved:
+            </h2>
+
+            <ul>
+            <% @student.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :mod %>
+    <%= f.select(:mod, (1..5), prompt: true) %>
+    <%= f.fields_for :duck_attributes do |d| %>
+        <%= d.label :name, "Duck name" %>
+        <%= d.text_field :name %>
+        <%= d.label :description, "Duck desc" %>
+        <%= d.text_field :description %>
+    <% end %>
+
+
+    <%= f.submit %>
+
+<% end %>
+
+
